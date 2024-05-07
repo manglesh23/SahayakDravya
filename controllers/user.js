@@ -47,7 +47,8 @@ const createUser = async (req, res) => {
           // console.log("Email Notification:-",sendNotification);
 
           const sendSMS=await sendsms(mobilenumber,"Registration Done");
-          console.log("Send SMS:-",sendSMS)
+          console.log("Send SMS:-",sendSMS);
+          console.log("added to check");
          // } else {
         //   res.status(200).json({ message: "Center Can't be Empty" });
         //   // for (let i = 0; i < 5; i++) {
