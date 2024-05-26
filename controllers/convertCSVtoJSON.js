@@ -23,6 +23,7 @@ const convertCSVtoJSON = async(filePath) => {
      try{
         console.log("Converting file")
          console.log("Request:-",req.file)
+         console.log("File Path:-",req.file.path);
     //    res.status(200).json({message:"File Testing"})
          let convertedFile = await convertCSVtoJSON(req.file.path);
          console.log("Converted File:-", convertedFile);

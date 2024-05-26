@@ -18,6 +18,6 @@ router.route("/signin").post(getUser.signin);
 router.route("/createCenter").post(createCenter); 
 router.route("/findCenter").get(findCenter);
 router.route("/addmember").post(addMember);
-router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile);
-router.route("/convert").post(uploadfileUsingMulter().single('file'),convertFileCSVToJSON);
+router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile); // uploading data file
+router.route("/convert").post(uploadfileUsingMulter().single('file'),convertFileCSVToJSON); //conerting CSV to JSON
 module.exports={router}
