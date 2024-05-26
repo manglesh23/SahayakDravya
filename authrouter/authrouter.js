@@ -13,8 +13,8 @@ const { convertFileCSVToJSON } = require('../controllers/convertCSVtoJSON');
 
 router.route("/").get(home);
 // router.route("/login").get(login);
-router.route("/createuser").post(verifyToken(),getUser.createUser);
-router.route("/signin").post(getUser.signin);
+router.route("/createuser").post(verifyToken(),getUser.createUser); //verifying this token here.
+router.route("/signin").post(getUser.signin);                       // generated token here and used this in Create user 
 router.route("/createCenter").post(createCenter); 
 router.route("/findCenter").get(findCenter);
 router.route("/addmember").post(addMember);

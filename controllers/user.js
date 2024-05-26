@@ -4,6 +4,7 @@ const { sendEmail } = require("../emailService/sendEmailNotification");
 const{sendsms}=require("../sendSMS/sendsms");
 const jwt = require("jsonwebtoken");
 require('dotenv').config();
+
 const createUser = async (req, res) => {
   try {
     console.log("Req:-",req)
