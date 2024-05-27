@@ -1,13 +1,13 @@
 const { Userdatabase } = require("../models/usermodel");
 const respnseString = require("../constant/responseString");
 const { sendEmail } = require("../emailService/sendEmailNotification");
-const{sendsms}=require("../sendSMS/sendsms");
+const { sendsms } = require("../sendSMS/sendsms");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+require("dotenv").config();
 
 const createUser = async (req, res) => {
   try {
-    console.log("Req:-",req)
+    console.log("Req:-", req);
     // console.log("information from user through Token:-",req.user);
     const {
       name,
@@ -27,30 +27,29 @@ const createUser = async (req, res) => {
       if (findIfExits) {
         res.status(200).json({ message: respnseString.ALREADY_EXIST });
       } else {
-      
-          let createUser = await Userdatabase.create({
-            name,
-            mobilenumber,
-            role,
-            city,
-            password,
-            authorizedCenter,
-          });
+        let createUser = await Userdatabase.create({
+          name,
+          mobilenumber,
+          role,
+          city,
+          password,
+          authorizedCenter,
+        });
 
-          res.status(200).json({
-            message: `${respnseString.REGISTRATIN_SUCCESSFUL}:-${createUser}`,
-          });
-          // const sendNotification = await sendEmail(
-          //   email,
-          //   "Registration",
-          //   "Registration Has been done"
-          // );
-          // console.log("Email Notification:-",sendNotification);
+        res.status(200).json({  
+          message: `${respnseString.REGISTRATIN_SUCCESSFUL}:-${createUser}`,
+        });
+        // const sendNotification = await sendEmail(
+        //   email,
+        //   "Registration",
+        //   "Registration Has been done"
+        // );
+        // console.log("Email Notification:-",sendNotification);
 
-          const sendSMS=await sendsms(mobilenumber,"Registration Done");
-          console.log("Send SMS:-",sendSMS);
-          console.log("added to check");
-         // } else {
+        const sendSMS = await sendsms(mobilenumber, "Registration Done");
+        console.log("Send SMS:-", sendSMS);
+        console.log("added to check");
+        // } else {
         //   res.status(200).json({ message: "Center Can't be Empty" });
         //   // for (let i = 0; i < 5; i++) {
         //   //   setTimeout(function(index) {
@@ -59,7 +58,6 @@ const createUser = async (req, res) => {
         //   //   }, 3000, i); // Multiply the delay by the index
         //   // }
         // }
-          
       }
     }
 
@@ -79,7 +77,7 @@ const signin = async (req, res) => {
   try {
     const { mobilenumber, password } = req.body;
     const findUser = await Userdatabase.findOne({ mobilenumber: mobilenumber });
-     console.log("finduser:-",findUser);
+    console.log("finduser:-", findUser);
 
     if (!findUser || !findUser.comparePassword(password)) {
       return res.status(404).json({ message: respnseString.USER_NOT_FOUND });
@@ -89,13 +87,11 @@ const signin = async (req, res) => {
       expiresIn: "1h",
     });
     // console.log("token generated:-",token)
-    res
-      .status(200)
-      .json({
-        success: true,
-        token: token,
-        message: respnseString.LOGIN_SUCCESS,
-      });
+    res.status(200).json({
+      success: true,
+      token: token,
+      message: respnseString.LOGIN_SUCCESS,
+    });
 
     //   if(findUser){
     //     let comparePassword=findUser.comparePassword(password);
