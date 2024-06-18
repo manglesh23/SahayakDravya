@@ -18,10 +18,10 @@ const upload = multer({
       cb(null, { fieldName: file.fieldname });
     },
     key: (req, file, cb) => {
-      cb(null, Date.now().toString() + '-' + file.originalname);
+      cb(null, Date.now().toString() + "-" + file.originalname);
     },
   }),
-}).single('file');
+}).single("file");
 
 const uploadTOAWSviaMulters3 = (req, res) => {
   upload(req, res, (err) => {
@@ -29,10 +29,10 @@ const uploadTOAWSviaMulters3 = (req, res) => {
       console.error(err);
       return res.status(404).json({ message: "File failed to upload" });
     }
-    res.status(200).json({ message: "File uploaded successfully", file: req.file });
+    res
+      .status(200)
+      .json({ message: "File uploaded successfully", file: req.file });
   });
 };
 
 module.exports = { uploadTOAWSviaMulters3 };
-
-// module.exports = { uploadTOAWSviaMulters3 };
