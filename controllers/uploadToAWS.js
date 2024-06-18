@@ -27,7 +27,9 @@ const uploadFile =async (fileName, bucketName) => {
       return;
     }
     console.log(`File uploaded successfully at ${data.Location}`);
+    return data
   });
+//   return data.Location
 };
 
 // Usage
@@ -36,6 +38,7 @@ const uploadFile =async (fileName, bucketName) => {
 const uploadToAWS=async(req,res)=>{
     try{
     console.log("File path to uploaded on AWS:-",req.file.path);
+    console.log(req.file.originalname);
     let uploadDataFile= await uploadFile(req.file.path, process.env.S3_BUCKET_NAME);
     console.log("Upload file:-",uploadDataFile);
     res.status(200).json({message:`Upload file to AWS ${req.file.path}`});

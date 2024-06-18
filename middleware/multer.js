@@ -10,6 +10,7 @@ const uploadfileUsingMulter = () => {
       filename: function (req, file, cb) {
         console.log("Request In multer:-",req);
         console.log("file in multer",file);
+        console.log("File Name:-",file.originalname)
         cb(
           null,
           file.originalname
