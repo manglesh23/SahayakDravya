@@ -14,7 +14,7 @@ const s3 = new aws.S3({
 
 // Multer S3 configuration function
 const uploadMulterS3 = () => {
- return multer({
+ let storage= multer({
    storage: multerS3({
       s3: s3,
       bucket: process.env.S3_BUCKET_NAME,
@@ -26,7 +26,8 @@ const uploadMulterS3 = () => {
       }
     })
 });
-
+let upload=multer({storage:storage});
+return upload
 //   return multer({ storage: storage });
 };
 
