@@ -14,6 +14,7 @@ const { uploadToAWS } = require('../controllers/uploadToAWS');
 // const { uploadmulterS3 } = require('../middleware/multer_s3');
 const {uploadTOAWSviaMulters3}=require('../controllers/uploadAWSmulterS3');
 const { uploadMulterS3 } = require('../middleware/multer_s3');
+const { uploadmiddlewaremulters3 } = require('../controllers/multerS3middleware');
 
 router.route("/").get(home);
 // router.route("/login").get(login);
@@ -25,5 +26,6 @@ router.route("/addmember").post(addMember);
 router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile); // uploading data file
 router.route("/convert").post(uploadfileUsingMulter().single('file'),convertFileCSVToJSON); //conerting CSV to JSON
 router.route('/uploadAWS').get(uploadfileUsingMulter().single('file'),uploadToAWS);
-router.route('/uploadAWSmulters3').get(uploadTOAWSviaMulters3)
+router.route('/uploadAWSmulters3').get(uploadTOAWSviaMulters3);
+router.route('/uploadmulters3').get(uploadMulterS3().single('file'),uploadmiddlewaremulters3);
 module.exports={router}

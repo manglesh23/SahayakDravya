@@ -1,34 +1,28 @@
-// const express = require('express');
-const aws = require('aws-sdk');
-const multerS3 = require('multer-s3');
-const multer = require('multer');
-const path = require('path');
-require('dotenv').config();
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const { S3Client } = require("@aws-sdk/client-s3");
+const { fromEnv } = require("@aws-sdk/credential-provider-env");
 
-// Configure AWS S3
-const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_S3_SECRET_KEY,
-  region: process.env.AWS_S3_REGION  // Ensure the environment variable is consistent
+// Instantiate the S3 client with credentials from environment variables
+const s3 = new S3Client({
+  region: process.env.S3_SOUTH_REGION,
+  credentials: fromEnv(), // Load credentials from environment variables
 });
 
-// Multer S3 configuration function
-const uploadMulterS3 = () => {
- let storage= multer({
-   storage: multerS3({
-      s3: s3,
-      bucket: process.env.S3_BUCKET_NAME,
-      metadata: function (req, file, cb) {
-        cb(null, { fieldName: file.fieldname });
-      },
-      key: function (req, file, cb) {
-        cb(null, Date.now().toString() + path.extname(file.originalname));
-      }
-    })
-});
-let upload=multer({storage:storage});
-return upload
-//   return multer({ storage: storage });
-};
+const uploadMulterS3=()=>{
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.S3_BUCKET_NAME,
+    metadata: (req, file, cb) => {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: (req, file, cb) => {
+      cb(null, Date.now().toString() + "-" + file.originalname);
+    },
+  }),
+})
+return upload;
+}
 
 module.exports = { uploadMulterS3 };
