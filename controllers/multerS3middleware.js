@@ -1,5 +1,13 @@
 const uploadmiddlewaremulters3=async(req,res)=>{
-    console.log("Request:-",req.file);
-    res.status(200).json({message:"file uploaded multer s3",file:req.file});
+    try{
+    console.log("Request:-",req.files);
+    res.status(200).json({message:"file uploaded multer s3",file:req.files});
+    }catch(e){
+        console.log(e);
+        return{
+            error:true,
+            details:e
+        }
+    }
 }
 module.exports={uploadmiddlewaremulters3}

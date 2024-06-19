@@ -10,6 +10,7 @@ const s3 = new S3Client({
 });
 
 const uploadMulterS3=()=>{
+    try{
 const upload = multer({
   storage: multerS3({
     s3: s3,
@@ -23,6 +24,12 @@ const upload = multer({
   }),
 })
 return upload;
+}catch(e){
+    console.log(e);
+    return{
+        error:true,
+        details:e
+    }
 }
-
-module.exports = { uploadMulterS3 };
+}
+module.exports = { uploadMulterS3 }

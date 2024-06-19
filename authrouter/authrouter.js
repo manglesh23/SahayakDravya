@@ -27,5 +27,7 @@ router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFi
 router.route("/convert").post(uploadfileUsingMulter().single('file'),convertFileCSVToJSON); //conerting CSV to JSON
 router.route('/uploadAWS').get(uploadfileUsingMulter().single('file'),uploadToAWS);
 router.route('/uploadAWSmulters3').get(uploadTOAWSviaMulters3);
-router.route('/uploadmulters3').get(uploadMulterS3().single('file'),uploadmiddlewaremulters3);
+router.route('/uploadmulters3').get(uploadMulterS3().array('files',5),uploadmiddlewaremulters3);
+//single('file) for single file ..field name in the post must be file
+//array('files',maxnumberoffile)  for multiple files ...field name must be files..must be same as defined in the function single or array
 module.exports={router}
