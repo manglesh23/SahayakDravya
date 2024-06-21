@@ -1,7 +1,7 @@
 const multer = require("multer");
 const multerS3 = require("multer-s3");
 const { S3Client } = require("@aws-sdk/client-s3");
-const { fromEnv } = require("@aws-sdk/credential-provider-env");
+const { fromEnv } = require("@aws-sdk/credential-provider-env");         // AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY S3_SOUTH_REGION Standard way to define
 
 // Instantiate the S3 client with credentials from environment variables
 const s3 = new S3Client({
