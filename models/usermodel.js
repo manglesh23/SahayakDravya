@@ -45,7 +45,11 @@ const userSchema = mongoose.Schema({
   ]
 });
 
-//--------------=====Here goes Password Hashing---------------------================================
+
+/* -------------------------------------------------------------------------- */
+/*                   Password Hasing with 10 random char                      */
+/* -------------------------------------------------------------------------- */
+
 userSchema.pre("save", async function (next) {
     try {
       if (!this.isModified("password")) {
@@ -64,7 +68,9 @@ userSchema.pre("save", async function (next) {
     }
   });
 
-  //compare password here--------------------------------------------//
+/* -------------------------------------------------------------------------- */
+/*                               Compare Password                             */
+/* -------------------------------------------------------------------------- */
   userSchema.methods.comparePassword=function(password){
     return bcrypt.compareSync(password,this.password);
   }
