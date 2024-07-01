@@ -31,14 +31,14 @@ const { uploadMulterS3 } = require('../middleware/multer_s3');
 const { uploadmiddlewaremulters3 } = require('../controllers/multerS3middleware');
 
 /* -------------------------------------------------------------------------- */
-/*                                Dependencies                                */
+/*                                Routers                                     */
 /* -------------------------------------------------------------------------- */              
 
 router.route("/").get(home);
 // router.route("/login").get(login);
-router.route("/createuser").post(verifyToken(),getUser.createUser); //verifying  oken here.
+router.route("/createuser").post(verifyToken(),getUser.createUser); //verifying the token here.
 
-router.route("/signin").post(getUser.signin);                       // generated token here and used this in Create user 
+router.route("/signin").post(getUser.signin);                       // Generate a Token every time user sign in 
 
 router.route("/createCenter").post(createCenter); 
 
@@ -49,15 +49,19 @@ router.route("/addmember").post(addMember);
 router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile); // uploading data file
 
 
-/*Uploading data file on server and converting the CSV file into JSON  */
+/*----------------------------------------------------------------------*/
+/* Uploading data file on server and converting the CSV file into JSON  */
+/*----------------------------------------------------------------------*/
 router.route("/convert").post(uploadfileUsingMulter().single('file'),convertFileCSVToJSON); 
 
 router.route('/uploadAWS').get(uploadfileUsingMulter().single('file'),uploadToAWS);
 
 router.route('/uploadAWSmulters3').get(uploadTOAWSviaMulters3);
 
+/*-------------------------------------------------------------------*/
 /*    Multiple files can be uploaded, max limit is defined here 5    */
 /*                 token Verification                                */
+/*-------------------------------------------------------------------*/
 router.route('/uploadmulters3').get(verifyToken(),uploadMulterS3().array('files',5),uploadmiddlewaremulters3);
 
 //single('file) for single file ..field name in the post must be file
