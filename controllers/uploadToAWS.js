@@ -10,8 +10,11 @@ AWS.config.update({
 });
 
 const s3 = new AWS.S3();
+/* -------------------------------------------------------------------------- */
+/* Function to upload a file into the server and in S3 bucket on AWS          */
+/* -------------------------------------------------------------------------- */
 
-// Function to upload a file
+
 const uploadFile =async (fileName, bucketName) => {
   const fileContent = fs.readFileSync(fileName);
 
@@ -32,7 +35,7 @@ const uploadFile =async (fileName, bucketName) => {
 //   return data.Location
 };
 
-// Usage
+
 
 
 const uploadToAWS=async(req,res)=>{

@@ -9,6 +9,11 @@ const s3 = new S3Client({
   credentials: fromEnv(), // Load credentials from environment variables
 });
 
+/* -------------------------------------------------------------------------- */
+/* middleware function to upload file on S3 bucket                            */
+/* -------------------------------------------------------------------------- */
+
+
 const uploadMulterS3=()=>{
     try{
 const upload = multer({

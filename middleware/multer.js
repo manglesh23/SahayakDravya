@@ -1,6 +1,10 @@
 const multer = require("multer");
 const path = require("path");
 
+/* -------------------------------------------------------------------------- */
+/*          middleware Function to upload file on server                      */
+/* -------------------------------------------------------------------------- */
+
 const uploadfileUsingMulter = () => {
   try {
     const storage = multer.diskStorage({

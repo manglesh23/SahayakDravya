@@ -5,9 +5,10 @@ const { S3Client } = require("@aws-sdk/client-s3");
 const { fromEnv } = require("@aws-sdk/credential-provider-env");
 
 // Instantiate the S3 client with credentials from environment variables
+
 const s3 = new S3Client({
   region: process.env.S3_SOUTH_REGION,
-  credentials: fromEnv(), // Load credentials from environment variables
+  credentials: fromEnv(),               // Load credentials from environment variables
 });
 
 const upload = multer({

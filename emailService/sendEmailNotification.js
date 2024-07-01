@@ -1,5 +1,8 @@
 const nodemailer = require("nodemailer");
 
+/* -------------------------------------------------------------------------- */
+/*                        Email trigger Helper                                */
+/* -------------------------------------------------------------------------- */
 const sendEmail = async (to, subject, text) => {
   try {
     const transporter = nodemailer.createTransport({

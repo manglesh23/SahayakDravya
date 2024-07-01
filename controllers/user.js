@@ -5,6 +5,10 @@ const { sendsms } = require("../sendSMS/sendsms");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+/* -------------------------------------------------------------------------- */
+/* User Registration and send an email notification to registered user        */
+/* -------------------------------------------------------------------------- */
+
 const createUser = async (req, res) => {
   try {
     console.log("Req:-", req);
@@ -72,6 +76,10 @@ const createUser = async (req, res) => {
     };
   }
 };
+
+/* -------------------------------------------------------------------------- */
+/*                                User Sign in                                */
+/* -------------------------------------------------------------------------- */
 
 const signin = async (req, res) => {
   try {
