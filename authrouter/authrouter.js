@@ -36,9 +36,15 @@ const { uploadmiddlewaremulters3 } = require('../controllers/multerS3middleware'
 
 router.route("/").get(home);
 // router.route("/login").get(login);
-router.route("/createuser").post(verifyToken(),getUser.createUser); //verifying the token here.
+/* -------------------------------------------------------------------------- */
+/*             Verifiying the token here and create center                    */
+/* -------------------------------------------------------------------------- */
+router.route("/createuser").post(verifyToken(),getUser.createUser);
 
-router.route("/signin").post(getUser.signin);                       // Generate a Token every time user sign in 
+/* -------------------------------------------------------------------------- */
+/*              Generate a Token every time user sign in                      */
+/* -------------------------------------------------------------------------- */
+router.route("/signin").post(getUser.signin);                        
 
 router.route("/createCenter").post(createCenter); 
 
@@ -46,7 +52,10 @@ router.route("/findCenter").get(findCenter);
 
 router.route("/addmember").post(addMember);
 
-router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile); // uploading data file
+/*----------------------------------------------------------------------*/
+/*                  Uploading data file on server                       */
+/*----------------------------------------------------------------------*/
+router.route("/upload").post(uploadfileUsingMulter().single('file'),uploadDataFile); 
 
 
 /*----------------------------------------------------------------------*/
@@ -58,10 +67,10 @@ router.route('/uploadAWS').get(uploadfileUsingMulter().single('file'),uploadToAW
 
 router.route('/uploadAWSmulters3').get(uploadTOAWSviaMulters3);
 
-/*-------------------------------------------------------------------*/
-/*    Multiple files can be uploaded, max limit is defined here 5    */
-/*                 token Verification                                */
-/*-------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+/*    Multiple files can be uploaded to AWS S3 Bucket, max limit is defined here 5    */
+/*                             token Verification                                     */
+/*------------------------------------------------------------------------------------*/
 router.route('/uploadmulters3').get(verifyToken(),uploadMulterS3().array('files',5),uploadmiddlewaremulters3);
 
 //single('file) for single file ..field name in the post must be file
