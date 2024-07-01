@@ -1,5 +1,9 @@
 const jwt = require("jsonwebtoken");
 
+/* -------------------------------------------------------------------------- */
+/*               Token verification middleware                                */
+/* -------------------------------------------------------------------------- */
+
 const verifyToken = () => {
   return function (req, res, next) {
     // console.log("verify token:-", req);

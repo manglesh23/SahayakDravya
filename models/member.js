@@ -1,4 +1,9 @@
 const mongoose = require("mongoose");
+
+/* -------------------------------------------------------------------------- */
+/*                       Member Schema                                        */
+/* -------------------------------------------------------------------------- */
+
 const MemberSchema = mongoose.Schema({
   fullname: {
     type: String,

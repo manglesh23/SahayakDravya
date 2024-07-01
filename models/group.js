@@ -1,5 +1,9 @@
 const mongoose= require('mongoose');
 
+/* -------------------------------------------------------------------------- */
+/*                        Group Schema                                        */
+/* -------------------------------------------------------------------------- */
+
 const GroupSchema=mongoose.Schema({
     groupname:{
         type:String,

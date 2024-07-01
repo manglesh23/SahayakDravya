@@ -1,5 +1,9 @@
 const mongoose= require('mongoose');
 // const Schema=mongoose.Schema;
+/* -------------------------------------------------------------------------- */
+/*                        Center Schema                                       */
+/* -------------------------------------------------------------------------- */
+
 const CenterSchema= mongoose.Schema({
     centerName:{
         type:String,
