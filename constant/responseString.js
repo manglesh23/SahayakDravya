@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*                                Error Message                               */
+/* -------------------------------------------------------------------------- */ 
 module.exports={
     PROVIDE_REQ_DETAILS:"Please Provide name, mobilenumber,city and role for the user",
     ALREADY_EXIST:"User Already Exists in System",
