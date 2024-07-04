@@ -30,6 +30,9 @@ const { uploadMulterS3 } = require('../middleware/multer_s3');
 
 const { uploadmiddlewaremulters3 } = require('../controllers/multerS3middleware');
 
+const validate=require('../middleware/zodvalidator');
+const {userSchema}=require('../zodSchema/zodSchema');
+
 /* -------------------------------------------------------------------------- */
 /*                                Routers                                     */
 /* -------------------------------------------------------------------------- */              
@@ -37,9 +40,9 @@ const { uploadmiddlewaremulters3 } = require('../controllers/multerS3middleware'
 router.route("/").get(home);
 // router.route("/login").get(login);
 /* -------------------------------------------------------------------------- */
-/*             Verifiying the token here and create center                    */
+/*             Verifiying the token here and create user                      */
 /* -------------------------------------------------------------------------- */
-router.route("/createuser").post(verifyToken(),getUser.createUser);
+router.route("/createuser").post(verifyToken(),validate(userSchema),getUser.createUser);
 
 /* -------------------------------------------------------------------------- */
 /*              Generate a Token every time user sign in                      */
