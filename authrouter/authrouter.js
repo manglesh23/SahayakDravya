@@ -39,8 +39,9 @@ const {userSchema}=require('../zodSchema/zodSchema');
 
 router.route("/").get(home);
 // router.route("/login").get(login);
+
 /* -------------------------------------------------------------------------- */
-/*             Verifiying the token here and create user                      */
+/*   Verifiying the token here and create user with data input validation     */
 /* -------------------------------------------------------------------------- */
 router.route("/createuser").post(verifyToken(),validate(userSchema),getUser.createUser);
 
